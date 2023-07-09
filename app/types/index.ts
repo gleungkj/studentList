@@ -4,6 +4,7 @@ import { Saga } from 'redux-saga';
 import { SagaInjectionModes } from 'redux-injectors';
 
 import { ContainerState as LanguageProviderState } from 'containers/LanguageProvider/types';
+import { StudentDTO } from './students';
 // [IMPORT NEW CONTAINERSTATE ABOVE] < Needed for generating containers seamlessly
 
 export interface InjectedStore extends Store {
@@ -31,4 +32,10 @@ export interface ApplicationRootState {
 
   // for testing purposes
   readonly test: any;
+}
+
+export type ApiDataType = {
+  message: String
+  status: String
+  studentList?: StudentDTO[]
 }

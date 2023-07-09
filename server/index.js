@@ -1,7 +1,11 @@
 /* eslint consistent-return:0 import/order:0 */
+const { mongodbURI } = require('./const')
 
 const express = require('express');
 const logger = require('./logger');
+const mongoose = require('mongoose')
+
+const router = require('./routes')
 
 const argv = require('./argv');
 const port = require('./port');
@@ -14,7 +18,30 @@ const ngrok =
 const { resolve } = require('path');
 const app = express();
 
-// If you need a backend, e.g. an API, add your custom backend-specific middleware here
+mongoose.connect(mongodbURI, {
+  dbName: 'sample_students'
+})
+
+console.log('starting index.js now')
+
+async function run() {
+  try {
+    // Connect the client to the server	(optional starting in v4.7)    
+    
+    // Send a ping to confirm a successful connection
+    console.log("Pinged your deployment. You have successfully connected to MongoDB!");
+  } catch {
+    // Ensures that the client will close when you finish/error
+    console.log('error received')
+    await mongoose.connection.close();
+  }
+}
+run().catch(console.dir);
+
+// use custom routes from routes.js
+
+app.use('/studentList', router)
+
 // app.use('/api', myApi);
 
 // In production we need to pass these values in instead of relying on webpack
@@ -34,6 +61,8 @@ app.get('*.js', (req, res, next) => {
   res.set('Content-Encoding', 'gzip');
   next();
 });
+
+
 
 // Start your app.
 app.listen(port, host, async err => {
