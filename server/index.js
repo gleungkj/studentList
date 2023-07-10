@@ -1,5 +1,5 @@
 /* eslint consistent-return:0 import/order:0 */
-const { mongodbURI } = require('./const')
+const mongodbURI = require('./const')
 
 const express = require('express');
 const logger = require('./logger');
