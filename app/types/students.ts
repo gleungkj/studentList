@@ -1,3 +1,6 @@
+export interface studentDTOProps {
+    studentList: StudentDTO
+}
 export interface StudentDTO {
     first_name: String
     last_name: String

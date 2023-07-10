@@ -1,10 +1,18 @@
-import React from "react";
+import React, { useCallback } from "react";
+import { addOneStudent } from "services/addOneStudent";
+import { StudentDTO, studentDTOProps } from "types/students";
 
 // add onsubmit logic here
 
-export const StudentSubmitButton: React.FC = (): JSX.Element => {
+const handleSubmit = (student: StudentDTO) => {
+    return useCallback(() => {
+        addOneStudent(student)
+    },[addOneStudent, student])
+}
+
+export const StudentSubmitButton: React.FC<studentDTOProps> = ({studentList}): JSX.Element => {
     return (
-        <button>
+        <button onSubmit={handleSubmit(studentList)}>
             Submit
         </button>
     )

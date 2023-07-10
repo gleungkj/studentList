@@ -1,9 +1,6 @@
 import React from "react";
-import { StudentDTO } from "types/students";
+import { StudentDTO, studentDTOProps } from "types/students";
 
-interface studentDTOProps {
-    studentList: StudentDTO
-}
 
 export const StudentRow: React.FC<studentDTOProps> = ({studentList}): JSX.Element => {
     return (
