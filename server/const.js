@@ -1,5 +1,5 @@
 const credentials = {
-    serverUserName: 'yourUserNameHere try again!',
+    serverUserName: 'yourUserNameHere try again now!!',
     apiKey: 'yourAPIKeyHere',
     serverName: 'yourServerNameHere'
 }
