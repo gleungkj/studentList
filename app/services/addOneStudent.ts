@@ -1,5 +1,4 @@
-import axios, { AxiosResponse } from "axios";
-import { ApiDataType } from "types";
+import axios, { AxiosRequestConfig } from "axios";
 import { StudentDTO } from "types/students";
 
 export const addOneStudent = async (studentList: StudentDTO) : Promise<void> => {
@@ -10,7 +9,7 @@ export const addOneStudent = async (studentList: StudentDTO) : Promise<void> => 
             data: {
                 studentList
             }
-        })
+        } as AxiosRequestConfig)
     } catch (error) {
         throw new Error(error as unknown as string)
     }

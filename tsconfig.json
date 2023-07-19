@@ -26,7 +26,7 @@
     "pretty": true,
     "removeComments": true,
     "sourceMap": true,
-    "skipLibCheck": false
+    "skipLibCheck": true,
   },
   "include": ["app/**/*", "internals/templates/**/*"],
   "exclude": ["node_modules"]
