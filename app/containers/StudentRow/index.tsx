@@ -1,8 +1,9 @@
-import React from "react";
-import { StudentDTO, studentDTOProps } from "types/students";
+import React from 'react';
+import { studentDTOProps } from 'types/students';
 
-
-export const StudentRow: React.FC<studentDTOProps> = ({studentList}): JSX.Element => {
+export const StudentRow: React.FC<studentDTOProps> = ({
+  studentList,
+}): JSX.Element => {
     return (
         <tr id={`studentRow-${studentList.id}`}>
             <td>

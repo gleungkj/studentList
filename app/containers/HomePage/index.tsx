@@ -19,6 +19,7 @@ import { AxiosResponse } from 'axios';
 import { ApiDataType } from 'types';
 import { StudentTable } from 'containers/StudentTable';
 import { StudentForm } from 'containers/StudentForm';
+import './index.css'
 
 export default function HomePage() {
 
@@ -42,7 +43,7 @@ export default function HomePage() {
   return (
     loading ? 
     <div>Loading...</div> :
-    <div>
+    <div id='studentContainer'>
       <StudentTable studentList={studentList}/>
       <StudentForm />
     </div>   
