@@ -1,23 +1,47 @@
 import React from "react";
 import './index.css';
-import { StudentSubmitButton } from "containers/StudentSubmitButton";
 import { Field, Form, Formik } from "formik";
+import { StudentDTO } from "types/students";
+import { addOneStudent } from "services/addOneStudent";
 
 export const StudentForm: React.FC = (): JSX.Element => {
+
+
+
     return (
-        <Formik initialValues={{}} 
+        <Formik initialValues={{
+            first_name: '',
+            last_name: '',
+            email: '',
+            age: '' as unknown as number,
+            grade: '' as unknown as number,
+            id: Math.random()
+        }} 
         
         
         // placeholder onSubmit function
-            onSubmit={(values, { setSubmitting }) => {
-                setTimeout(() => {
-                alert(JSON.stringify(values, null, 2));
-                setSubmitting(false);
-                }, 400)}}>
+            onSubmit={async (values: StudentDTO, { setSubmitting }): Promise<void|Error> => {
+                const newStudentDTO: StudentDTO = {
+                    first_name: values.first_name,
+                    last_name: values.last_name,
+                    email: values.email,
+                    age: values.age,
+                    grade: values.grade,
+                    id: Math.random()
+                }
+
+                try {
+                    addOneStudent(newStudentDTO)
+                } catch {
+                    return new Error
+                }
+
+                // got form as studentDTO, so send this via handleSubmit
+                setSubmitting(false)}}>
 
             <Form id="studentForm">
-            <Field name='firstName' placeholder='First Name' required='true' type='text'/>
-            <Field name='lastName' placeholder='Last Name' required='true' type='text'/>
+            <Field name='first_name' placeholder='First Name' required='true' type='text'/>
+            <Field name='last_name' placeholder='Last Name' required='true' type='text'/>
             <Field name='email' placeholder='Email' type='email'/>
             <Field name='age' placeholder='Age' type='number'/>
             <Field name='grade' placeholder='Grade' type='number'/>
@@ -26,15 +50,6 @@ export const StudentForm: React.FC = (): JSX.Element => {
             </button>    
             </Form>                
             
-        </Formik>
-        // <table id='studentForm'>            
-        //     <input placeholder="First Name" />          
-        //     <input placeholder="Last Name" />            
-        //     <input placeholder="Email" />
-        //     <input placeholder="Age" />
-        //     <input placeholder="Grade" />
-        //     <StudentSubmitButton studentList={}/>
-        // </table>
-        
+        </Formik>        
     )
 }

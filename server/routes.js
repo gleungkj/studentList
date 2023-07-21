@@ -3,20 +3,22 @@ const { getAllStudents, addOneStudent } = require('./utils')
 
 const router = express.Router()
 
+const jsonParser = express.json()
+
 router.get('/', async (req, res) => {
     const allStudentList = await getAllStudents()
     res.send(allStudentList);
   })
 
-router.post(`/`, async (req, res) => {
+router.post(`/`, jsonParser, async (req, res) => {
 
     // add request body onto addOneStudent
     const newStudent = await addOneStudent({
-      firstName: 'Dummy',
-      lastName: 'Student',
-      email: 'dummy@student.com',
-      age: '13',
-      grade: '2'
+      firstName: req.body.first_name,
+      lastName: req.body.last_name,
+      email: req.body.email,
+      age: req.body.age,
+      grade: req.body.grade
     })
 
     res.send(newStudent)

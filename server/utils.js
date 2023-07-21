@@ -14,8 +14,6 @@ async function getAllStudents(){
 
 async function addOneStudent({firstName, lastName, email, age, grade}){
 
-  console.log('adding one student')
-
   const newStudent = new studentModel({
     first_name: firstName,
     last_name: lastName,
@@ -23,6 +21,8 @@ async function addOneStudent({firstName, lastName, email, age, grade}){
     age: age,
     grade: grade
   })
+
+  console.log(`adding one student with parameters: ${newStudent}`)
 
   newStudent.save()
 }

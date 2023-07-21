@@ -1,11 +1,11 @@
 export interface studentDTOProps {
-    studentList: StudentDTO
+  studentList: StudentDTO;
 }
 export interface StudentDTO {
-    first_name: String
-    last_name: String
-    email: String
-    age: Number
-    grade: Number
-    id: Number
+  first_name: String;
+  last_name: String;
+  email: String;
+  age: Number;
+  grade: Number;
+  id: Number;
 }
