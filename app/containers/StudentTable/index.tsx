@@ -12,29 +12,20 @@ export const StudentTable: React.FC<StudentDTOProps> = ({
   return (
     <table id="studentTable">
       <thead>
-            <tr>
-                <th>
-                    First Name
-                </th>
-                <th>
-                    Last Name
-                </th>
-                <th>
-                    Email
-                </th>
-                <th>
-                    Age
-                </th>
-                <th>
-                    Grade
-                </th>
-            </tr>
-        </thead>
-        <tbody>
-            {studentList.map(student => (
-                <StudentRow studentList={student} />
-            ))}
+        <tr>
+          <th>First Name</th>
+          <th>Last Name</th>
+          <th>Email</th>
+          <th>Age</th>
+          <th>Grade</th>
+          <th>Remove</th>
+        </tr>
+      </thead>
+      <tbody>
+        {studentList.map(student => (
+          <StudentRow studentList={student} />
+        ))}
       </tbody>
     </table>
-        );
-    }
+  );
+};
