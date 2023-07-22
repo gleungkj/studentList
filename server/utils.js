@@ -27,4 +27,8 @@ async function addOneStudent({firstName, lastName, email, age, grade}){
   newStudent.save()
 }
 
-module.exports = { getAllStudents, addOneStudent } 
+async function removeStudentById(id) {
+  await studentModel.findByIdAndDelete(id)  
+}
+
+module.exports = { getAllStudents, addOneStudent, removeStudentById } 

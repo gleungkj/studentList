@@ -3,21 +3,11 @@ import './index.css';
 import { Field, Form, Formik } from "formik";
 import { StudentDTO } from "types/students";
 import { addOneStudent } from "services/addOneStudent";
+import { initialValues } from "./const";
 
 export const StudentForm: React.FC = (): JSX.Element => {
-
-
-
     return (
-        <Formik initialValues={{
-            first_name: '',
-            last_name: '',
-            email: '',
-            age: '' as unknown as number,
-            grade: '' as unknown as number,
-            id: Math.random()
-        }} 
-        
+        <Formik initialValues={initialValues} 
         
         // placeholder onSubmit function
             onSubmit={async (values: StudentDTO, { setSubmitting }): Promise<void|Error> => {

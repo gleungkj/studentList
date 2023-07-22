@@ -1,7 +1,7 @@
 import React from 'react';
-import { studentDTOProps } from 'types/students';
-import { TrashIcon } from '@heroicons/react/24/solid'
+import { studentDTOProps } from 'types/students'
 import { BsFillTrashFill } from 'react-icons/bs'
+import { RemoveStudentIcon } from 'containers/RemoveStudentIcon';
 
 export const StudentRow: React.FC<studentDTOProps> = ({
   studentList,
@@ -13,7 +13,7 @@ export const StudentRow: React.FC<studentDTOProps> = ({
       <td>{studentList.email}</td>
       <td>{studentList.age}</td>
       <td>{studentList.grade}</td>
-      <td><BsFillTrashFill /></td>
+      <td><RemoveStudentIcon studentList={studentList} /></td>
     </tr>
   );
 };

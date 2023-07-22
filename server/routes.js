@@ -1,5 +1,5 @@
 const express = require('express');
-const { getAllStudents, addOneStudent } = require('./utils')
+const { getAllStudents, addOneStudent, removeStudentById } = require('./utils')
 
 const router = express.Router()
 
@@ -23,6 +23,14 @@ router.post(`/`, jsonParser, async (req, res) => {
 
     res.send(newStudent)
   });
+
+router.delete('/', jsonParser, async(req, res) => {
+
+  console.log('deleting student based on following details:')
+  console.log(req.body)
+
+    await removeStudentById(req.body._id)
+})
 
 router.get('/fakeData', async (req, res) => {
     const dummyData = 'someState'
