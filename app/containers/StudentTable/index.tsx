@@ -4,10 +4,12 @@ import { StudentDTO } from 'types/students';
 
 interface StudentDTOProps {
   studentList: StudentDTO[];
+  setStudentList: React.Dispatch<React.SetStateAction<StudentDTO[]>>
 }
 
 export const StudentTable: React.FC<StudentDTOProps> = ({
   studentList,
+  setStudentList
 }): JSX.Element => {
   return (
     <table id="studentTable">
@@ -23,7 +25,7 @@ export const StudentTable: React.FC<StudentDTOProps> = ({
       </thead>
       <tbody>
         {studentList.map(student => (
-          <StudentRow studentList={student} />
+          <StudentRow student={student} setStudentList={setStudentList}/>
         ))}
       </tbody>
     </table>

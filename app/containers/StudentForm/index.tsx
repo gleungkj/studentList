@@ -4,8 +4,13 @@ import { Field, Form, Formik } from "formik";
 import { StudentDTO } from "types/students";
 import { addOneStudent } from "services/addOneStudent";
 import { initialValues } from "./const";
+import { fetchStudents } from "services/fetchStudents";
 
-export const StudentForm: React.FC = (): JSX.Element => {
+interface StudentFormProps {
+    setStudentList: React.Dispatch<React.SetStateAction<StudentDTO[]>>
+}
+
+export const StudentForm: React.FC<StudentFormProps> = ({setStudentList}): JSX.Element => {
     return (
         <Formik initialValues={initialValues} 
         
@@ -22,6 +27,7 @@ export const StudentForm: React.FC = (): JSX.Element => {
 
                 try {
                     addOneStudent(newStudentDTO)
+                    fetchStudents(setStudentList)
                 } catch {
                     return new Error
                 }

@@ -1,19 +1,24 @@
 import React from 'react';
-import { studentDTOProps } from 'types/students'
+import { StudentDTO, studentDTOProps } from 'types/students'
 import { BsFillTrashFill } from 'react-icons/bs'
 import { RemoveStudentIcon } from 'containers/RemoveStudentIcon';
 
-export const StudentRow: React.FC<studentDTOProps> = ({
-  studentList,
+interface StudentRowProps {
+  student: StudentDTO
+  setStudentList: React.Dispatch<React.SetStateAction<StudentDTO[]>>
+}
+
+export const StudentRow: React.FC<StudentRowProps> = ({
+  student, setStudentList
 }): JSX.Element => {
   return (
-    <tr id={`studentRow-${studentList.id}`}>
-      <td>{studentList.first_name}</td>
-      <td>{studentList.last_name}</td>
-      <td>{studentList.email}</td>
-      <td>{studentList.age}</td>
-      <td>{studentList.grade}</td>
-      <td><RemoveStudentIcon studentList={studentList} /></td>
+    <tr id={`studentRow-${student.id}`}>
+      <td>{student.first_name}</td>
+      <td>{student.last_name}</td>
+      <td>{student.email}</td>
+      <td>{student.age}</td>
+      <td>{student.grade}</td>
+      <td><RemoveStudentIcon student={student} setStudentList={setStudentList}/></td>
     </tr>
   );
 };

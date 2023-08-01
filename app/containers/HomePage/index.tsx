@@ -9,7 +9,7 @@
  * the linting exception.
  */
 
-import * as React from 'react';
+import React, { useState, useEffect } from 'react';
 import { FormattedMessage } from 'react-intl';
 import messages from './messages';
 // import students from './students';
@@ -20,22 +20,21 @@ import { ApiDataType } from 'types';
 import { StudentTable } from 'containers/StudentTable';
 import { StudentForm } from 'containers/StudentForm';
 import './index.css'
+import { fetchStudents } from 'services/fetchStudents';
 
 export default function HomePage() {
 
-  const [loading, setLoading] = React.useState(true)
-  const [studentList, setStudentList] = React.useState<StudentDTO[]>([])
+  const [loading, setLoading] = useState(true)
+  const [studentList, setStudentList] = useState<StudentDTO[]>([])
  
 
-  React.useEffect(() => {
-    fetchStudents()
+  useEffect(() => {
+    fetchStudents(setStudentList)
     setLoading(false)
     
   }, [])
 
-  const fetchStudents = (): void => {
-    getAllStudents().then((data: AxiosResponse<ApiDataType>) => setStudentList(data.data as unknown as StudentDTO[]))
-  }
+  
 
   console.log(studentList)
   // create table component and pass students INTO it
@@ -44,8 +43,8 @@ export default function HomePage() {
     loading ? 
     <div>Loading...</div> :
     <div id='studentContainer'>
-      <StudentTable studentList={studentList}/>
-      <StudentForm />
+      <StudentTable studentList={studentList} setStudentList={setStudentList}/>
+      <StudentForm setStudentList={setStudentList}/>
     </div>   
     // <h1>
     //         {/* <FormattedMessage {...messages.header} /> */}
