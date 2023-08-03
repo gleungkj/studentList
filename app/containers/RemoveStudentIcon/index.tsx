@@ -11,9 +11,15 @@ interface RemoveStudentProps {
 
 export const RemoveStudentIcon: React.FC<RemoveStudentProps> = ({student, setStudentList}): JSX.Element => {
 
-  const handleOnClick = (student: StudentDTO): void => {
-    deleteStudentById(student)
-    fetchStudents(setStudentList)
+  const handleOnClick = async (student: StudentDTO): Promise<void|Error> => {
+
+    try {
+      await deleteStudentById(student)
+      await fetchStudents(setStudentList)
+    } catch {
+      return new Error
+    }
+    
   }
 
   return (

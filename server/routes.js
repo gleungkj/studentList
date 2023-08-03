@@ -30,6 +30,7 @@ router.delete('/', jsonParser, async(req, res) => {
   console.log(req.body)
 
     await removeStudentById(req.body._id)
+    return res.status(200).json({})
 })
 
 router.get('/fakeData', async (req, res) => {

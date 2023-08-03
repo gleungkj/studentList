@@ -4,6 +4,9 @@ import { ApiDataType } from "types"
 import { AxiosResponse } from "axios"
 
 
-export const fetchStudents = (setStudentList: React.Dispatch<React.SetStateAction<StudentDTO[]>>): void => {
-    getAllStudents().then((data: AxiosResponse<ApiDataType>) => setStudentList([...data.data as unknown as StudentDTO[]]))
+export const fetchStudents = async (setStudentList: React.Dispatch<React.SetStateAction<StudentDTO[]>>): Promise<void> => {
+
+    const studentList = await getAllStudents()
+    setStudentList([...studentList.data as unknown as StudentDTO[]])
+
   }
